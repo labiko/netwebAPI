@@ -1,6 +1,6 @@
 using System;
 
-namespace netcoreW
+namespace netwebAPI
 {
     public class WeatherForecast
     {

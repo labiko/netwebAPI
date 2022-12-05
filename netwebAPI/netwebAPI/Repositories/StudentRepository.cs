@@ -13,11 +13,17 @@ namespace netwebAPI.Repositories
         {
             this._context = context;
         }
+
         public async Task<List<DataModels.Student>> GetStudentsAsync()
         {
             return await _context.Sutudent.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
         }
 
+        public async Task<Student> GetStudentAsync(Guid studentId)
+        {
+            return await _context.Sutudent.Include(nameof(Gender)).Include(nameof(Address))
+                .FirstOrDefaultAsync(x => x.Id == studentId);
+        }
 
     }
 }

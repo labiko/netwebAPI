@@ -59,5 +59,17 @@ namespace netwebAPI.Controllers
             return Ok(
             _Imapper.Map<List<DataModels.Student>>(students));
         }
+
+        [HttpGet]
+        [Route("[controller]/{studentId:guid}")]
+        public async Task<IActionResult> GetStudentAsysnc([FromRoute] Guid studentId)
+        {
+            var student = await _IStudentRepository.GetStudentAsync(studentId);
+            if (student == null)
+                return NotFound();
+
+            return Ok(_Imapper.Map<DataModels.Student>(student));
+        }
+
     }
 }
